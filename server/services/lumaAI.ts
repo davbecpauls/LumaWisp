@@ -1,9 +1,16 @@
 import OpenAI from "openai";
 import { type Realm, type Message } from "@shared/schema";
 
+// Get OpenAI API key from environment variables
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+if (!OPENAI_API_KEY) {
+  console.warn("⚠️  OPENAI_API_KEY not found in environment variables. AI features will use fallback responses.");
+}
+
 // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
 const openai = new OpenAI({ 
-  apiKey: process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY_ENV_VAR || "default_key" 
+  apiKey: OPENAI_API_KEY || "dummy-key-for-fallback-mode"
 });
 
 interface LumaPersonality {

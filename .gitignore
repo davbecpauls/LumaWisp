@@ -4,3 +4,11 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Environment Variables (contains secrets)
+.env
+.env.local
+.env.production
+
+# Keep the example file
+!.env.example

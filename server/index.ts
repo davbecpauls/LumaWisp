@@ -2,6 +2,20 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
+// Load environment variables from .env file in development
+if (process.env.NODE_ENV === "development") {
+  try {
+    import("dotenv").then((dotenv) => {
+      dotenv.config();
+      log("✅ Environment variables loaded from .env file");
+    }).catch(() => {
+      log("⚠️  dotenv not available, using system environment variables");
+    });
+  } catch (error) {
+    log("⚠️  Failed to load .env file, using system environment variables");
+  }
+}
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
