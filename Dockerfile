@@ -8,16 +8,17 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm ci --no-optional
 
 # Copy the rest of the application code
 COPY . .
 
-# Build the application using npx to ensure binaries are found
-RUN npx vite build && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+# Build the application using the existing npm scripts
+RUN npm run build:client
+RUN npm run build:server
 
-# Remove dev dependencies to reduce image size
-RUN npm ci --only=production && npm cache clean --force
+# Clean up to reduce image size
+RUN npm prune --production && npm cache clean --force
 
 # Expose the port the app runs on
 EXPOSE 5000

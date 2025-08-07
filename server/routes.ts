@@ -19,6 +19,24 @@ const transformRequestSchema = z.object({
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
+  // Health check endpoint for deployment monitoring
+  app.get("/api/health", (req, res) => {
+    res.json({ 
+      status: "healthy", 
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || "development"
+    });
+  });
+
+  // Basic status endpoint for compatibility
+  app.get("/", (req, res) => {
+    res.json({ 
+      message: "LumaWisp Backend API", 
+      status: "running",
+      version: "1.0.0"
+    });
+  });
+  
   // Get Wisp thought of the day
   app.get("/api/luma/thought/:realm", async (req, res) => {
     try {
