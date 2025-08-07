@@ -16,6 +16,8 @@ externalPort = 80
 
 [env]
 PORT = "5000"
+# Add your OpenAI API key as a secret in Replit
+# OPENAI_API_KEY = "your-openai-api-key-here"
 
 [workflows]
 runButton = "Project"
