@@ -7,6 +7,7 @@ Luma Wisp is an interactive AI-powered character system designed for educational
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Visual design preference: Custom magical character design over reference images for Luma Wisp.
 
 ## System Architecture
 
@@ -43,7 +44,8 @@ Preferred communication style: Simple, everyday language.
 ### UI/UX Architecture
 - **Responsive Design**: Mobile-first approach with adaptive layouts
 - **Accessibility**: ARIA compliance through Radix UI primitives
-- **Visual Identity**: Realm-specific color schemes and animations that adapt to the current context
+- **Visual Identity**: Custom SVG-based magical character design with realm-specific transformations and animations
+- **Character Design**: Ethereal wisp with flowing shape, glowing eyes, animated sparkles, and unique magical elements per realm (stars for Aether, flames for Fire, water droplets for Water, leaves for Earth, wind swirls for Air)
 - **Component Structure**: Modular design with reusable LumaWisp, ChatInterface, and RealmSelector components
 
 ## External Dependencies
