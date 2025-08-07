@@ -52,12 +52,69 @@ netlify deploy --prod
 
 See [NETLIFY_DEPLOYMENT.md](./NETLIFY_DEPLOYMENT.md) for detailed deployment instructions.
 
-### Full-Stack Deployment
-For complete backend functionality, deploy to platforms that support Node.js:
-- Railway
-- Render  
-- Heroku
-- Vercel (with serverless functions)
+### Full-Stack Backend Deployment
+
+The backend is configured for deployment on multiple platforms. Choose the one that best fits your needs:
+
+#### 🚀 Railway (Recommended)
+1. Connect your GitHub repository to Railway
+2. Railway will automatically detect the `railway.toml` configuration
+3. Set environment variables in Railway dashboard:
+   - `OPENAI_API_KEY` (optional)
+   - `DATABASE_URL` (optional)
+   - `SESSION_SECRET` (recommended)
+
+#### 🎨 Render.com
+1. Connect your GitHub repository to Render
+2. Render will automatically use the `render.yaml` configuration
+3. Set environment variables in Render dashboard
+
+#### 🟪 Heroku
+```bash
+# Install Heroku CLI and login
+heroku login
+
+# Create a new Heroku app
+heroku create your-app-name
+
+# Set environment variables
+heroku config:set NODE_ENV=production
+heroku config:set OPENAI_API_KEY=your_key_here  # optional
+heroku config:set SESSION_SECRET=your_secret_here
+
+# Deploy
+git push heroku main
+```
+
+#### ▲ Vercel (Serverless)
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+
+# Set environment variables in Vercel dashboard
+```
+
+#### 🐳 Docker Deployment
+```bash
+# Build the Docker image
+docker build -t lumawisp .
+
+# Run the container
+docker run -p 5000:5000 -e NODE_ENV=production lumawisp
+```
+
+### Environment Variables for Production
+
+Set these environment variables on your deployment platform:
+
+- `NODE_ENV=production` (required)
+- `PORT` (automatically set by most platforms)
+- `OPENAI_API_KEY` (optional - app works without it)
+- `DATABASE_URL` (optional - uses in-memory storage by default)
+- `SESSION_SECRET` (recommended for production security)
 
 ## 🔐 Security & API Keys
 

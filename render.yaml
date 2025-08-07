@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: lumawisp-backend
+    env: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    # Environment variables that need to be set in Render dashboard:
+    # - OPENAI_API_KEY (optional - app works without it)
+    # - DATABASE_URL (optional - uses in-memory storage by default)
+    # - SESSION_SECRET (recommended for production)
